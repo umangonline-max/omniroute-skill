@@ -87,7 +87,7 @@ curl -s -X PUT http://localhost:20128/api/settings/compression \
 ```bash
 curl -s http://localhost:20128/api/providers                                     # list
 curl -s -X POST http://localhost:20128/api/providers -H 'Content-Type: application/json' \
-  -d '{"provider":"openai-compatible-chat-<uuid>","name":"myconn",
+  -d '{"provider":"openai-compatible-chat","name":"myconn",
        "apiKey":"sk-...","providerSpecificData":{"baseUrl":"https://x.com/v1","prefix":"x","apiType":"chat"}}'
 curl -s -X PATCH http://localhost:20128/api/providers/<id> -d '{"isActive":false}'
 curl -s -X DELETE http://localhost:20128/api/providers/<id>                      # irreversible — confirm first
@@ -114,9 +114,12 @@ omniroute keys regenerate <id>          # NEW value, old invalid
 ### Combos (routing policies)
 ```bash
 omniroute combo list
-omniroute combo create <name> -m "provider/model1,provider/model2"   # see --help for strategy
+omniroute combo create <name> --strategy priority      # CLI creates empty combo (name + strategy only)
+curl -s http://localhost:20128/api/combos               # full configs
+curl -s -X POST http://localhost:20128/api/combos -H 'Content-Type: application/json' \
+  -d '{"name":"mycombo","models":["provider/model1","provider/model2"],"strategy":"priority"}'
+curl -s -X PATCH http://localhost:20128/api/combos/<id> -d '{"strategy":"weighted","models":[...]}'
 omniroute combo switch <name>          # activate
-curl -s http://localhost:20128/api/combos                             # full configs
 ```
 - Combo fields: `name, model(s), strategy, nodes[{connectionId, weight, priority}], isActive, endpoint`.
 - Strategies: `priority | weighted | round-robin | context-relay | fill-first | p2c | random | least-used | cost-optimized | reset-aware | reset-window | headroom | strict-random | auto | lkgp | context-optimized | cache-optimized | fusion | pipeline` (+internal `quota-share`).
