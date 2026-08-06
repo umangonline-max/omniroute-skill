@@ -9,7 +9,7 @@ A single, framework-agnostic **agent skill** that gives any AI coding agent (Cla
 Paste this single line into any agent that supports skills (Claude Code, Codex, OpenClaw, Hermes, OpenCode, ...):
 
 ```
-Install the omniroute skill: clone https://github.com/umangonline-max/omniroute-skill into /tmp/omniroute-skill, run its install.sh, then read SKILL.md and use it to locate, inspect, and control my local OmniRoute gateway (default http://localhost:20128) — verify with `omniroute health` before changing anything.
+Install the omniroute skill: clone https://github.com/umangonline-max/omniroute-skill into /tmp/omniroute-skill, run its install.sh (install.ps1 on Windows), then read SKILL.md and use it to locate, inspect, and control my local OmniRoute gateway (default http://localhost:20128) — verify with `omniroute health` before changing anything.
 ```
 
 That's it. The agent will:
