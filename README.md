@@ -25,6 +25,15 @@ cd omniroute-skill
 ./install.sh        # auto-detects installed agents and copies into all of them
 ```
 
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/umangonline-max/omniroute-skill
+cd omniroute-skill
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+**Windows alternative:** WSL or Git Bash can also run `./install.sh`. Manual install works on any OS — just copy `SKILL.md` into the agent's skills dir.
+
 Or per agent:
 
 | Agent | Location |
